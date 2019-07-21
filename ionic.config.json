@@ -1,5 +1,7 @@
 {
   "name": "besafe_mobile",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
