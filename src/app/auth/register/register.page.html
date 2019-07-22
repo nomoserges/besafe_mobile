@@ -1,0 +1,58 @@
+<ion-content  color="primary">
+  <form  #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="6" size-sm="6" size-xs="12">
+          <div text-center>
+            <h3>Create your account!</h3>
+          </div>
+          <div padding>
+            <!--  Fistname and lastname block  -->
+            <ion-row>
+              <ion-col align-self-center size-md="6" size-lg="6" size-sm="6" size-xs="12">
+                <ion-item>
+                  <ion-input  name="firstname" type="text" placeholder="First Name" ngModel required></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col align-self-center size-md="6" size-lg="6" size-sm="6" size-xs="12">
+                <ion-item>
+                  <ion-input  name="lastname" type="text" placeholder="Last Name" ngModel required></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!--  Pseudo block  -->
+            <ion-row>
+              <ion-col align-self-center>
+                <ion-item>
+                  <ion-input name="pseudo" type="text" placeholder="Email or phone" ngModel required></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!--  Password block  -->
+            <ion-row>
+              <ion-col align-self-center size-md="6" size-lg="6" size-sm="6" size-xs="12">
+                <ion-item>
+                  <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col align-self-center size-md="6" size-lg="6" size-sm="6" size-xs="12">
+                <ion-item>
+                    <ion-input name="confirm_password" type="password" placeholder="Confirm" ngModel required></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div padding>
+            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <div text-center>
+          Already get an account ?<a routerLink='/login'>Go 
+          log in</a> !
+        </div>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
