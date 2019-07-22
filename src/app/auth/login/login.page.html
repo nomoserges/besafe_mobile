@@ -3,8 +3,10 @@
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h3>Login</h3>
+          <div text-center style="margin-top:auto;">
+            <ion-thumbnail style="width:128px;height:128px;margin: auto;display: block;">
+              <img src="../../../assets/besafe_logo.png" size="128" class="auth-logo-circle">
+            </ion-thumbnail>
           </div>
           <div padding>
             <ion-item>
@@ -15,21 +17,15 @@
             </ion-item>
           </div>
           <div padding>
-            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+            <ion-button type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+          </div>
+          <div text-center align-self-center padding style='font-size: 80%;'>
+            Need an account ? <a routerLink='/register'>Register here</a>
+          </div>
+          <div text-center align-self-center padding style='font-size: 80%;'>
+            <a routerLink='/'>Loss password ?</a>
           </div>
         </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <div center>
-              <a routerLink='/register'>Register</a>
-          </div>
-        </ion-col>
-        <ion-col>
-            <div center>
-                <a routerLink='/'>Loss password ?</a>
-            </div>
-          </ion-col>
       </ion-row>
     </ion-grid>
   </form>
