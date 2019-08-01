@@ -1,9 +1,9 @@
 export interface AuthResponse {
-    user: {
-        userid: number,
-        firstname: string,
-        lastname: string,
-        access_token: string,
-        expires_in: number
+  [x: string]: string;
+    server : {
+        msgType: string;
+        msgTitle: string;
+        msgBody: string;
+        msgData: string;
     }
 }

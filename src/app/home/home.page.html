@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        BeSAFE
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-card class="welcome-card">
+        <ion-img src="/assets/images/taxi-vairified.jpg"></ion-img>
+        <ion-card-content>
+          <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500.</p>
+        </ion-card-content>
+      </ion-card>
+      <ion-list lines="none">
+        <ion-item routerLink='/menuemployeur'>
+          <ion-icon slot="start" color="primary" name="book"></ion-icon>
+          <ion-label>Scan passager</ion-label>
+        </ion-item>
+        <ion-item routerLink='/menuemploye'>
+          <ion-icon slot="start" color="primary" name="build"></ion-icon>
+          <ion-label>Scan chauffeur</ion-label>
+        </ion-item>
+      </ion-list>
+  </ion-content>

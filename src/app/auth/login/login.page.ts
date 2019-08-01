@@ -18,7 +18,9 @@ export class LoginPage implements OnInit {
 
   login(form){
     this.authService.login(form.value).subscribe((res)=>{
-      this.router.navigateByUrl('home');
+      if(res.msgType == 'success') {
+        this.router.navigateByUrl('home');
+      }
     });
   }
   
