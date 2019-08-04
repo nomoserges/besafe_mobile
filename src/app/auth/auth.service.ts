@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from  '@angular/common/http';
+
 import { tap } from  'rxjs/operators';
 import { Observable, BehaviorSubject } from  'rxjs';
 
@@ -19,54 +20,50 @@ const headersMultipart = new HttpHeaders().set(
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
 
+export class AuthService {
+  data;
+  //  user id storage
+  storageUserid : String;
+  //  login state indicator
+  loginState: Boolean = false;
   AUTH_SERVER_ADDRESS:  string  =  'http://localhost/besafe_core/index.php/';
   authSubject  =  new  BehaviorSubject(false);
 
   constructor(private  httpClient:  HttpClient, private  storage:  Storage) { }
 
-  register(user: User): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(`${this.AUTH_SERVER_ADDRESS}users/register/`, 
-    user, {headers: headers}).pipe(
-      tap(async (res:  AuthResponse ) => {
-        if (res.msgType == 'success') {
-          await this.storage.set("ACCESS_TOKEN", res.msgData.access_token);
-          await this.storage.set("EXPIRES_IN", res.msgData.expires_in);
-          await this.storage.set("userid", res.msgData.userid);
-          this.authSubject.next(true);
-        } else {
-          this.authSubject.next(false);
-        }
-      })
-
-    );
+  /**
+   * Register new user.
+   * @param data 
+   */
+  register(data) {
+    return this.httpClient.post(this.AUTH_SERVER_ADDRESS + 'users/register/', data, { headers: headers });
   }
 
-  login(user: User): Observable<AuthResponse> {
-    return this.httpClient.post(`${this.AUTH_SERVER_ADDRESS}users/login`, 
-    user, {headers: headers}).pipe(
-      tap(async (res: AuthResponse) => {
-        if (res.msgType == 'success') {
-          await this.storage.set("ACCESS_TOKEN", res.msgData.access_token);
-          await this.storage.set("EXPIRES_IN", res.msgData.expires_in);
-          await this.storage.set("userid", res.msgData.userid);
-          this.authSubject.next(true);
-        } else {
-          this.authSubject.next(false);
-        }
-      })
-    );
+  
+  /**
+   * Login a user.
+   * @param data 
+   */
+  login(data) {
+    return this.httpClient.post(this.AUTH_SERVER_ADDRESS + 'users/login/', data, { headers: headers });
   }
 
+  /**
+   * Logout a user.
+   * We delete all storage informations.
+   */
   async logout() {
-    await this.storage.remove("ACCESS_TOKEN");
-    await this.storage.remove("EXPIRES_IN");
-    await this.storage.remove("userid");
+    await this.storage.clear().then(() => {
+      console.log('all keys cleared');
+    });
     this.authSubject.next(false);
   }
 
+  /**
+   * Locking if a user is logged in
+   */
   isLoggedIn() {
-    return this.authSubject.asObservable();
+    return this.storage.get('userid');
   }
 }
